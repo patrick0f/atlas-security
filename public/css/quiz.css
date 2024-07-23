@@ -1,0 +1,264 @@
+#quiz-container {
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+      }
+      
+      :root {
+        font-size: 62.5%;
+      }
+      
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin-bottom: 0.5rem;
+      }
+      
+      h1 {
+        font-size: 2.75rem;
+        margin-bottom: 1.25rem;
+      }
+      
+      h1 > span {
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+      
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+      }
+      
+      h3 {
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
+      
+    .choice-container {
+        display: flex;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        font-size: 0.9rem;
+        border: 0.1rem solid rgb(0, 0, 0, 0.25);
+        background-color: rgb(42, 42, 42);
+    border-radius: 20px;
+      }
+      
+      .choice-container:hover {
+        cursor: pointer;
+        box-shadow: 0 0.4rem 1.4rem rgb(89 85 77);
+        transform: translateY(-0.1rem);
+        transition: transform 150ms;
+      }
+      
+      .letter {
+        padding: 1.5rem 2.5rem;
+        background-color: var(--primary-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        box-shadow: 5px 0 5px rgb(119 117 117 / 23%);
+      }
+      
+      .answerText {
+        padding: 1.5rem;
+        width: 100%;
+      }
+    
+      .container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 80rem;
+        margin: 0 auto;
+      }
+      
+      
+      .container > * {
+        width: 100%;
+      }
+      
+      .flex-column {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .flex-center {
+        display: flex;
+        align-items: center;
+      }
+      
+      .justify-center {
+        justify-content: center;
+      }
+      
+      .justify-end {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 2rem;
+      }
+      
+      .text-center {
+        text-align: center;
+      }
+      
+      .hidden {
+        display: none !important;
+      }
+      
+      .nextBtn {
+        color: var(--default-color);
+    background: var(--primary-color);
+    border: 2px var(--primary-color);
+    font-size: 14px;
+    padding: 8px 26px;
+    margin: 0;
+    border-radius: 4px;
+    width: 15rem;
+    height: 3rem;
+      }
+      .arrowbtn {
+        font-size: 1rem;
+        padding: 1rem 0;
+        width: 5rem;
+        text-align: center;
+        border: 0.1rem solid var(--primary-color);
+        margin-bottom: 1rem;
+        background-color: white;
+      }
+      
+      .nextBtn:hover {
+        cursor: pointer;
+        transform: translateY(-0.1rem);
+        transition: transform 150ms;
+      }
+      .arrowbtn:hover {
+        cursor: pointer;
+        transform: translateY(-0.1rem);
+        transition: transform 150ms;
+      }
+      
+      .nextBtn[disabled]:hover {
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+        pointer-events: none;
+      }
+      
+      .disabled:hover {
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+        pointer-events: none;
+      }
+      
+      .disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        background-color: rgb(42, 42, 42);
+      }
+      
+      .btn-disabled {
+        color: lightgray;
+      }
+      .select {
+        background-color: rgb(230, 224, 224, 0.25) !important;
+      }
+      
+      .wrong {
+        background-color:  #7c0808 !important;
+      }
+      
+      .correct {
+        background-color: var(--primary-color) !important;
+      }
+      
+      #hud {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .hudprefix {
+        text-align: center;
+        font-size: 1rem;
+      }
+      
+      .hudmaintext {
+        text-align: center;
+      }
+      
+      #progressbar {
+        width: 10rem;
+        height: 2rem;
+        border: 0.3rem solid  var(--primary-color);
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      #progressbarfull {
+        height: 1.7rem;
+        background-color: var(--primary-color);
+        width: 0%;
+      }
+      #gameMessage, #leaderboard {
+        margin-top: 2rem;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+      }
+      #scoreDiv {
+        display: none;
+        height: auto;
+        flex-direction: column;
+      }
+
+    #leaderboard {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+      
+.form {
+  flex: 1 1 16rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgb(224, 190, 126);
+  text-align: center;
+}
+.form .inputBox {
+  margin: 0.7rem 0;
+  width: 50%;
+  padding: 0.6rem;
+  padding-left: 1.2rem;
+  font-size: 1.5rem;
+  color: black;
+  border-radius: 0.5rem;
+}
+.submit-btn {
+  color: var(--default-color);
+  background: var(--primary-color);
+  border: 2px var(--primary-color);
+  font-size: 14px;
+  padding: 8px 26px;
+  margin: 0;
+  border-radius: 4px;
+  width: 15rem;
+  height: 3rem;
+}
+
+      
+@media (max-width: 767px) {
+  .nextBtn {
+    width: 75%;
+  }
+}
+}
