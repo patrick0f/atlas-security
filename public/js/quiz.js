@@ -15,7 +15,7 @@ let username = document.querySelector('#name');
 let scoreDiv = document.querySelector('#scoreDiv');
 let leaderboard = document.querySelector('#leaderboard');
 
-const API_BASE_URL = 'https://atlas-security-production.up.railway.app/';
+const API_BASE_URL = 'https://atlas-security-production.up.railway.app';
 
 let currentQuestion = {};
 let acceptingQuestion = false;
