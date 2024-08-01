@@ -1,10 +1,9 @@
 const express = require("express");
+const router = express.Router();
 
 const {
     getTopScores,
     createScore } = require("../controllers/scores");
-
-const router = express.Router();
 
 router.route('/').get(getTopScores).post(createScore);
 
