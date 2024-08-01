@@ -11,6 +11,13 @@ const ScoreSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  createdBy: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+    required: [true]
+}
+}, {
+  timestamps: true
 })
 
 module.exports = mongoose.model('Score', ScoreSchema)
