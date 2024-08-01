@@ -1,22 +1,29 @@
+require('dotenv').config()
+require("express-async-errors")
 const express = require("express")
 const app = express();
-const port = process.env.PORT || 8080;
-const scores = require("./routes/scores")
+
 const connectDB = require("./db/connect")
-require('dotenv').config()
+const authenticateUser = require("./middleware/authentication")
+const authRouter = require('./routes/auth')
+const scores = require("./routes/scores")
+
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
+
 
 // Middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./public"))
 
-// Routes
-app.use('/api/v1/scores', scores)
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/scores', authenticateUser, scores)
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
+
+const port = process.env.PORT || 8080;
 
 const start = async () => {
     try {
