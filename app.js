@@ -37,10 +37,13 @@ app.use(
         connectSrc: [
           "'self'", 
           "https://rss.nytimes.com", 
-          "https://atlas-security-production.up.railway.app"
+          "https://atlas-security-production.up.railway.app",
+          "https://atlas-security.up.railway.app"
         ],
       },
     },
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" },
   })
 );
 app.use(cors())
