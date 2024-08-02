@@ -1,6 +1,5 @@
 const Score = require("../models/Score");
 const asyncWrapper = require('../middleware/async')
-const {createCustomError} = require("../errors/custom-error")
 
 const getTopScores = asyncWrapper( async (req, res, next) => {
     const scores = await Score.find({})
