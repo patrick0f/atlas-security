@@ -109,6 +109,7 @@ const createScore = async (scoreData) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify(scoreData)
     });
@@ -136,6 +137,7 @@ async function getScores() {
       headers: {
         'Content-Type': 'application/json',
         // Add any additional headers here, e.g., authorization tokens
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     });
 

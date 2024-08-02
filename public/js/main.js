@@ -173,3 +173,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', aosInit);
 
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  let user = localStorage.getItem("user");
+  if(user) {
+    let userBtn = document.querySelector('#userBtn');
+    userBtn.textContent = `${user}`;
+    userBtn.setAttribute('href', '');
+  }
+})

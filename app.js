@@ -26,19 +26,23 @@ const limiter = rateLimit({
 })
 // app.use(limiter)
 app.use(
-    helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-          styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-          fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
-          imgSrc: ["'self'", "data:", "https:"],
-          connectSrc: ["'self'", "https://rss.nytimes.com"],
-        },
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: [
+          "'self'", 
+          "https://rss.nytimes.com", 
+          "https://atlas-security-production.up.railway.app"
+        ],
       },
-    })
-  );
+    },
+  })
+);
 app.use(cors())
 app.use(xss())
 
