@@ -24,7 +24,7 @@ const limiter = rateLimit({
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, 
 })
-app.use(limiter)
+// app.use(limiter)
 app.use(
     helmet({
       contentSecurityPolicy: {
