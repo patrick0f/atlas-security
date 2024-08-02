@@ -8,12 +8,13 @@ const getTopScores = asyncWrapper( async (req, res, next) => {
     // if (scores.length === 0) {
     //     return next(createCustomError("no scores found", 404))
     // }
-    res.status(200).json(scores)
+    res.status(StatusCodes.OK).json(scores)
 })
 
 const createScore = asyncWrapper(async (req, res) => {
+    req.body.createdBy = req.user.userId;
     const score = await Score.create(req.body)
-    res.status(201).json(score)
+    res.status(StatusCodes.CREATED).json(score)
   })
 
 module.exports = {

@@ -5,7 +5,7 @@ require("express-async-errors")
 const helmet = require("helmet")
 const cors = require("cors")
 const xss = require("xss-clean")
-const rateLimiter = require("rate-limiter")
+const {rateLimit} = require("express-rate-limit")
 
 const express = require("express")
 const app = express();
@@ -18,12 +18,13 @@ const scores = require("./routes/scores")
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
-app.use(rateLimiter({
+const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, 
-}))
+})
+app.use(limiter)
 app.use(helmet())
 app.use(cors())
 app.use(xss())
