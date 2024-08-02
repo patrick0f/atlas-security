@@ -6,7 +6,7 @@ const helmet = require("helmet")
 const cors = require("cors")
 const xss = require("xss-clean")
 const {rateLimit} = require("express-rate-limit")
-
+const fetch = require("node-fetch")
 const express = require("express")
 const app = express();
 
@@ -14,6 +14,7 @@ const connectDB = require("./db/connect")
 const authenticateUser = require("./middleware/authentication")
 const authRouter = require('./routes/auth')
 const scores = require("./routes/scores")
+const rss = require("./routes/rss")
 
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -25,7 +26,16 @@ const limiter = rateLimit({
 	legacyHeaders: false, 
 })
 app.use(limiter)
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: ["'self'", "https://rss.nytimes.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+      },
+    },
+  }))
 app.use(cors())
 app.use(xss())
 
@@ -36,6 +46,7 @@ app.use(express.static("./public"))
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/scores', authenticateUser, scores)
+app.use('/api/v1/proxy-rss', rss)
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);

@@ -1,4 +1,4 @@
-const link = 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml'
+const link = '/api/proxy-rss'
 let inf = ''
 let ref = document.getElementById("newsrow")
 
@@ -9,15 +9,7 @@ fetch(link)
     let html = ``;
     console.log(Array.from(data.querySelectorAll("item")));
     const items = Array.from(data.querySelectorAll("item")).slice(0,5);
-    /*
-    items.forEach(el => {
-        html += `
-        <div class="col">
-            <h1>${el.querySelector("Title")}</h1>
-        </div>
-        `
-        console.log(el.querySelector("Title").textContent)
-    })*/
+
     items.forEach(el => {
         let author = el.querySelector("creator").innerHTML;
         
@@ -25,8 +17,7 @@ fetch(link)
             author = author.slice(0,37) + '...'
             console.log(author.length)
         }
-        /* let url = .el.querySelector("media\\:content")getAttribute("url");
-        <img src="${url} alt="Article cover"> */
+
         html += `
           <div class="col news-article">
             <h6>
@@ -44,3 +35,4 @@ fetch(link)
       });
       ref.innerHTML += html
   })
+  .catch(error => console.error('Error:', error));
