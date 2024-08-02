@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://atlas-security-production.up.railway.app';
+const API_BASE_URL = 'https://atlas-security.up.railway.app';
 
 let form = document.querySelector('#form');
 let username = document.querySelector('#name');
