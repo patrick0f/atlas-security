@@ -1,4 +1,4 @@
-const link = '/api/proxy-rss'
+const link = '/api/v1/proxy-rss'
 let inf = ''
 let ref = document.getElementById("newsrow")
 
@@ -7,7 +7,6 @@ fetch(link)
   .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
   .then(data => {
     let html = ``;
-    console.log(Array.from(data.querySelectorAll("item")));
     const items = Array.from(data.querySelectorAll("item")).slice(0,5);
 
     items.forEach(el => {
@@ -15,7 +14,6 @@ fetch(link)
         
         if (author.length > 37){
             author = author.slice(0,37) + '...'
-            console.log(author.length)
         }
 
         html += `

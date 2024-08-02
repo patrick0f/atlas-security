@@ -6,7 +6,6 @@ const helmet = require("helmet")
 const cors = require("cors")
 const xss = require("xss-clean")
 const {rateLimit} = require("express-rate-limit")
-const fetch = require("node-fetch")
 const express = require("express")
 const app = express();
 
@@ -26,16 +25,20 @@ const limiter = rateLimit({
 	legacyHeaders: false, 
 })
 app.use(limiter)
-app.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        connectSrc: ["'self'", "https://rss.nytimes.com"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
+app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+          styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+          fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: ["'self'", "https://rss.nytimes.com"],
+        },
       },
-    },
-  }))
+    })
+  );
 app.use(cors())
 app.use(xss())
 
